@@ -1,90 +1,76 @@
 using System;
-// Interface representando um ataque
+
 interface IAtacante {
     void Atacar();
 }
-public abstract class Heroi{
-    //Atributos da classe Heroi
+
+public abstract class Heroi {
     private string nome;
-    private int vida;
-    private string forca;
-    private string agilidade;
-}
-    //Construto da classe Heroi 
-    public Instrumentos ( string nome, int vida, string forca, string agilidade;) 
-    {
+    
+    public Heroi(string nome) {
         this.nome = nome;
-        this.vida = vida;
-        this.forca = forca;
-        this.agilidade = agilidade;
-        
     }
 
-    // Getter para o nome
-    public string GetNome(){
+    public string GetNome() {
         return nome;
     }
-    // Seter para o nome 
-    public void SetNome(string nome){
+
+    public void SetNome(string nome) {
         this.nome = nome;
     }
-    // Getter para o vida
-    public string GetVida(){
-        return vida;
-    }
-    // Seter para o vida 
-    public void SetVida(string vida){
-        this.vida = vida;
-    }
-    // Getter para o forca
-    public string GetForca(){
-        return forca;
-    }
-    // Seter para o forca 
-    public void SetForca(string forca){
-        this.forca = forca;
-    }
-    // Getter para o agilidade
-    public string GetAgilidade(){
-        return agilidade;
-    }
-    // Seter para o agilidade 
-    public void SetAgilidade(string agilidade){
-        this.agilidade = agilidade;
-    }
-    public void SetAgilidade(string agilidade){
-        this.agilidade = agilidade;
+
+    public abstract void Especial();
+}
+
+public class Guerreiro : Heroi, IAtacante {
+    public Guerreiro(string nome) : base(nome) {}
+
+    public void Atacar() {
+        Console.WriteLine("Guerreiro está atacando");
     }
 
-// Classe Guerreiro implementando a interface IAtaque
-class Guerreiro : IAtaque, Heroi  {
-    public void Atacar() {
-        Console.WriteLine("Guerreiro ataca com espada");
+    public override void Especial() {
+        Console.WriteLine("Guerreiro está usando seu ataque especial");
     }
 }
-// Classe Mago implementando a interface IAtaque
-class Mago : IAtaque, Heroi {
-    public void Atacar() {
-        Console.WriteLine("Mago lanca bola de fogo");
-    }
-}
-// Classe Arqueiro implementando a interface IAtaque
-class Arqueiro : IAtaque, Heroi{
-    public void Atacar() {
-        Console.WriteLine("Arqueiro dispara flechas!");
-    }
-}
-class Program{
-    static void Main(string[] args) {
-        // Criando instancias de diferentes personagens
-    IAtaque guerreiro = new Guerreiro();
-    IAtaque mago = new Mago();
-    IAtaque arqueiro = new Arqueiro();
 
-    // Chamando o metodo Atacar de cada personagens
-    guerreiro.Atacar();
-    mago.Atacar();
-    arqueiro.Atacar();
+public class Mago : Heroi, IAtacante {
+    public Mago(string nome) : base(nome) {}
+
+    public void Atacar() {
+        Console.WriteLine("Mago está atacando");
     }
 
+    public override void Especial() {
+        Console.WriteLine("Mago está usando seu ataque especial");
+    }
+}
+
+public class Arqueiro : Heroi, IAtacante {
+    public Arqueiro(string nome) : base(nome) {}
+
+    public void Atacar() {
+        Console.WriteLine("Arqueiro está atacando");
+    }
+
+    public override void Especial() {
+        Console.WriteLine("Arqueiro está usando seu ataque especial");
+    }
+}
+
+public class Program {
+    public static void Main(string[] args) {
+        Guerreiro guerreiro = new Guerreiro("Corte de Vento");
+        Mago mago = new Mago("Meteoro Flamejante");
+        Arqueiro arqueiro = new Arqueiro("Rajada de Flechas");
+
+        guerreiro.Atacar();
+        guerreiro.Especial();
+
+        mago.Atacar();
+        mago.Especial();
+
+        arqueiro.Atacar();
+        arqueiro.Especial();
+    }
 }
